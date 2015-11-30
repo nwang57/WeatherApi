@@ -12,7 +12,7 @@ class EndToEnd(unittest.TestCase):
         self.end_date = datetime.datetime(2015, 11, 25)
 
     def test_search_date_range(self):
-        client = WeatherApi()
+        client = WeatherApi(self.api_key)
         print(client.search_date_range(self.start_date, self.end_date, self.zip_code))
 
     def test_invalid_key(self):
@@ -21,7 +21,7 @@ class EndToEnd(unittest.TestCase):
         self.assertEqual(result['weather_observations'][0]['error'], "this key does not exist")
 
     def test_invalid_param(self):
-        client = WeatherApi()
+        client = WeatherApi(self.api_key)
         result = client.search_date_range(self.start_date, self.end_date, "")
         self.assertEqual(result['weather_observations'][0]['error'], "you must supply a location query")
 

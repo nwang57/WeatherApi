@@ -1,10 +1,11 @@
 import datetime
+import os
 from weather.downloader import download_url
 
 class WeatherApi(object):
     """WeatherUnderground Api wrapper"""
-    def __init__(self, api_key="9cfcefad7ac10e20"):
-        self.api_key = api_key
+    def __init__(self):
+        self.api_key = os.environ.get("WEATHER_API_KEY")
 
     def search_date_range(self, start_date, end_date, zip_code):
         """Search weather conditions for each day between start_date and end_date"""
